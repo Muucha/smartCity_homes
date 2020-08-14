@@ -19,7 +19,7 @@ radio.setGroup(1)
 pins.servoWritePin(AnalogPin.P0, 0)
 basic.forever(function () {
     // 名前を変える
-    radio.sendValue("taro", input.lightLevel())
+    radio.sendValue("hanako", input.lightLevel())
     led.plotBarGraph(
     input.lightLevel(),
     255
