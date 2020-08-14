@@ -1,16 +1,20 @@
 radio.onReceivedValue(function (name, value) {
-    if (name == "switch") {
+    if (name == "led") {
         if (value == 1) {
             strip.showColor(neopixel.colors(NeoPixelColors.White))
-            pins.servoWritePin(AnalogPin.P0, 0)
         } else {
             strip.showColor(neopixel.colors(NeoPixelColors.Black))
+        }
+    } else if (name == "door") {
+        if (value == 1) {
             pins.servoWritePin(AnalogPin.P0, 180)
+        } else {
+            pins.servoWritePin(AnalogPin.P0, 0)
         }
     }
 })
 let strip: neopixel.Strip = null
-strip = neopixel.create(DigitalPin.P0, 3, NeoPixelMode.RGB)
+strip = neopixel.create(DigitalPin.P1, 3, NeoPixelMode.RGB)
 radio.setGroup(1)
 pins.servoWritePin(AnalogPin.P0, 0)
 basic.forever(function () {
@@ -20,5 +24,5 @@ basic.forever(function () {
     input.lightLevel(),
     255
     )
-    basic.pause(100)
+    basic.pause(1000)
 })
